@@ -71,6 +71,12 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
 		<!-- commons와 관련하여 아파치에서 제공하는 클래스들을 제공, org.apache.commons.lang.builder.ToStringBuilder 관련 -->
 		<dependency>
 			<groupId>commons-lang</groupId>

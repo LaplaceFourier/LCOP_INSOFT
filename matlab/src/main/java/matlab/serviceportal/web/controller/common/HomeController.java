@@ -66,12 +66,12 @@ import org.springframework.security.core.context.SecurityContextHolder;*/
  */
 @Controller
 @RequestMapping("/")
-public class HomeController extends BaseController {
+public class HomeController{
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	//@Autowired LocaleService localeService;
-	@Autowired MenuService menuService;
+	//@Autowired MenuService menuService;
 	//@Autowired UserMenuService userMenuService;
 	//@Autowired ServiceService serviceService;
 	
@@ -84,23 +84,23 @@ public class HomeController extends BaseController {
 		ModelAndView view = new ModelAndView("home");
 
 		//여기서 메뉴는 하나의 메뉴에 해당한다.
-		MenuVo menu = new MenuVo();
+		//MenuVo menu = new MenuVo();
 		//UserVo user = new UserVo();
 
 		//user.setUser_id(getUser_id());   //세션에 저장된 로그인 정보를 반환
 		//user.setSite_id(getSite_id());   //세션에 저장된 존 아이디를 반환
 
 		// 메뉴별 기능 목록(등록, 수정, 삭제 등 특정 액션 및 특정 영역에 제한 및 허용을 위해 사용됨)
-		List<MenuVo> functions_check = new ArrayList<MenuVo>();
+		//List<MenuVo> functions_check = new ArrayList<MenuVo>();
 
 		// 유저의 접근 가능한 메뉴 목록을 처리한다. 사용자 role에 맞는 Menu를 반환한다. 메뉴 기능을 체크하기 위한 List값을 가지고 있음
-		init_menu(userMenuService.select_role(user), menu, functions_check);
+		//init_menu(userMenuService.select_role(user), menu, functions_check);
 
 		// 메뉴 목록
-		List<MenuVo> menus = menu.getSub();
+		//List<MenuVo> menus = menu.getSub();
 
 		// 허용된 메뉴가 없으면 대시보드 정보만 셋팅한다.
-		if (menus.size() == 0) {
+		/*if (menus.size() == 0) {
 			menus = new ArrayList<MenuVo>();
 			MenuVo param = new MenuVo();
 			param.setMenu_id(1);
@@ -110,65 +110,22 @@ public class HomeController extends BaseController {
 
 			menus = menu.getSub();
 		}
-
-		request.getSession().setAttribute("user_functions", functions_check);
+*/
+		//request.getSession().setAttribute("user_functions", functions_check);
 
 		// 지원되는 다국어 목록을 조회
 		//view.addObject("locales", localeService.list(null));
 		// 페이지 이동이 필요 한 경우
 		//view.addObject("goPage", getGoPage());
 		// 사용자에게 노출될 메뉴 목록
-		view.addObject("menu", menus);
+		//view.addObject("menu", menus);
 		
 		return view;
 	}
 	
-	/*@SuppressWarnings("rawtypes")
-	@RequestMapping("goPage")
-	public ModelAndView goPage(HttpServletRequest request, HttpSession session) {
 
-		if(EgovStringUtil.isNotEmpty(request.getParameter("hash")))
-		{
-			Map<String, Object> params = new HashMap<String, Object>();
-			Enumeration e = request.getParameterNames();
-			while (e.hasMoreElements()) {
-				String key = (String) e.nextElement();
-				params.put(key, request.getParameter(key));
-			}
-			setSession("goPage", params);
-		}
-
-		if(userTopGranted() == null)
-			return new ModelAndView("redirect:/login/login.do");
-		else
-			return new ModelAndView("redirect:/");
-	}
-
-	*//**
-	 * 파일 다운로드
-	 * @param param
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("download")
-	public ModelAndView dn(FileVo param) throws Exception {
-		return new ModelAndView(DOWNLOAD, "downloadFile", fileAttachService.select(param));
-	}
-
-	*//**
-	 * 첨부파일 새로고침 용도
-	 * @param param
-	 * @return
-	 * @throws Exception
-	 *//*
-	@RequestMapping("file_refresh")
-	public ModelAndView refresh(FileVo param) throws Exception {
-		return new ModelAndView(JSON, "data", fileAttachService.list(param));
-	}*/
-
-	
 	//메뉴에 관련하여, DB에서 뽑아내는 과정, init_menu(userMenuService.select_role(user), menu, functions_check);
-	private int init_menu(List<MenuVo> menus, MenuVo data, List<MenuVo> functions_check) {
+/*	private int init_menu(List<MenuVo> menus, MenuVo data, List<MenuVo> functions_check) {
 
 		// 최상위 노드를 먼저 찾는다. 
 		if (data.getMenu_id() == 0) {
@@ -210,5 +167,5 @@ public class HomeController extends BaseController {
 			return data.getSub().size();
 		}
 		return 0;
-	}
+	}*/
 }
